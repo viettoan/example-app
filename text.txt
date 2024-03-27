@@ -1,0 +1,74 @@
+// RESTful API
+// CRUD
+
+Quan ly user
+// Tao moi user
+POST - /users
+// Danh sach user
+GET - /users
+// Chi tiet user
+GET - /users/{userId}
+// Update user
+PUT/PATCH - /users/{userId}
+// Delete user
+DELETE - /users/{userId}
+
+
+- src // Chứa các logic chính trong ứng dụng
+    - controllers // Các class định nghĩa các function handler chính
+    - middlewares // Định nghĩa các middleware function 
+    - models // Các đối tượng được mô hình hoá (modeling) từ các collection/table trong DB
+    - services // Các class định nghĩa các function xử lý logic 
+    - commons
+        - helpers // chứa các function hỗ trợ trong ứng dụng
+        - constants // chứa các constant trong ứng dụng
+-routers // chứa các route trong ứng dụng
+- storage // chứa các file: images
+- config // cấu hình hệ thống
+    - database // các cấu hình liên quan DB
+- index.js // Khai báo instance của express, setup server
+- package.json // cấu hình ứng dụng
+
+
+// Xây dựng 1 ứng dụng BE cung cấp các JSON APIs cho web bán hàng
+
+B1: Init project
+    => install packages
+    => Setup server
+    => Kiến trúc project
+    => init git
+B2: Phát triển các module tính năng
+    => Phát triển Module
+        => Quản lý users (CRUD)
+            - Thêm (C)
+                - API: POST /users
+            - Danh sách (filter, phân trang) (R)
+                - API: GET /users
+            - Chi tiết (R)
+                - API: GET /users/{userId}
+            - Cập nhật (U)
+                - API: PUT /users/{userId}
+            - Xoá (D)
+                - API: DELETE /users/{userId}
+            - Import danh sách user (C)
+                - API: POST /users/import
+            - Export danh sách user (R)
+                - API: GET /users/export
+        => Login
+            - API: POST /admins/login (R)
+        => Profile
+            - Chi tiết
+                - API: GET /profiles (R)
+            - Cập nhật 
+                - API: PUT /profiles (U)
+            - Thay đổi password
+                - API: PUT /profiles/password (U)
+    => Thiết kế DB
+        => users: 
+            name - string, max 255, min 1, required
+            phone - string, max 11, min 9, required, unique
+            email - string, max 255, min 1, required, fomat email, unique
+            gender - number (1 - male, 2 - female), required
+            password - string, required
+            avatar - string
+            role - number (1 - admin, 2 - users)
